@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 
 /**
- * Route for all post requests to the servers
+ * Route for all post requests to the servers. Currently, it just sends the request back to the server
  */
-export default (application: any) => {
-  application.post("*", (req: Request, res: Response) => {
-    console.log("Received request on port: " + req.socket.localPort);
+export default (app: any) => {
+  app.post("*", (req: Request, res: Response) => {
     res.send(req.body);
   });
 };
