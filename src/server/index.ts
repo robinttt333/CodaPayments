@@ -3,7 +3,7 @@ import express from "express";
 import path from "path";
 import ipWhitelister from "./middleware/ipWhitelister";
 import postRoute from "./routes/post";
-import requestLogger from "./middleware/requestLogger";
+import requestLogger from "./middleware/logger";
 
 /**
  *  This method instantiates the application with the different middlewares
