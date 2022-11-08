@@ -5,7 +5,7 @@ import { balancer } from "../index";
 /**
  * Controller to manage the post requests to the balancer
  */
-export default async (req: Request, res: Response) => {
+export const postRequestController = async (req: Request, res: Response) => {
   let responseFromServer = null;
   while (true) {
     try {

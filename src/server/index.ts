@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
 import express from "express";
 import path from "path";
-import ipWhitelister from "./middleware/ipWhitelister";
-import postRoute from "./routes/post";
-import requestLogger from "./middleware/logger";
+import ipWhitelister from "./middlewares/ipWhitelister.middleware";
+import postRoute from "./routes/post.route";
+import requestLogger from "./middlewares/logger.middleware";
 
 /**
  *  This method instantiates the application with the different middlewares
@@ -13,6 +13,7 @@ const initMiddleware = (app: any) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(ipWhitelister);
+  app.use(postRoute);
 };
 
 const envPath = path.resolve(__dirname, "..", "..", ".env");
@@ -24,7 +25,6 @@ const applications = portNumbers.map((_) => express());
 
 applications.forEach((application, idx) => {
   initMiddleware(application);
-  postRoute(application);
   console.log("Listening on port: " + portNumbers[idx]);
   application.listen(portNumbers[idx]);
 });
