@@ -7,13 +7,10 @@ import { balancer } from "../index";
  */
 export const postRequestController = async (req: Request, res: Response) => {
   let responseFromServer = null;
-  while (true) {
-    try {
-      responseFromServer = await post(balancer.getAddress(), req.body);
-      break;
-    } catch (e) {
-      console.log(e);
-    }
+  try {
+    responseFromServer = await post(balancer.getAddress(), req.body);
+  } catch (e) {
+    throw e;
   }
   res.send(JSON.stringify(responseFromServer.data));
 };
